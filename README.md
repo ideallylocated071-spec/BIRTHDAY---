@@ -84,7 +84,7 @@
             <p class="text-sm text-gray-400 mb-8">Tap the box to unlock its contents</p>
             <div onclick="openGift()" class="cursor-pointer group relative my-6">
                 <div class="absolute -inset-4 bg-gradient-to-r from-pink-500 to-purple-600 rounded-2xl blur-xl opacity-40 group-hover:opacity-70 transition duration-500"></div>
-                <i id="gift-icon" class="fa-solid fa-box-open text-8xl text-pink-400 transition-transform duration-500 group-hover:scale-110"></i>
+                <i id="gift-icon" class="fa-solid fa-box text-8xl text-pink-400 transition-transform duration-500 group-hover:scale-110"></i>
             </div>
             <p id="gift-hint" class="text-xs text-pink-300/70 mt-4 animate-bounce">Click to open</p>
         </section>
@@ -371,10 +371,10 @@
             }, 3050);
         }
 
-        // Page 11: Countdown Module (Targeting a date 100 days away for display consistency)
+        // Page 11: Countdown Module (Targeting a date 14 days away for display consistency)
         function runCountdownTimer() {
             const targetDate = new Date();
-            targetDate.setDate(targetDate.getDate() + 14); // Next Milestone hardcoded 14 days out
+            targetDate.setDate(targetDate.getDate() + 14); 
             
             function updateClock() {
                 const now = new Date();
@@ -422,11 +422,32 @@
             window.location.reload();
         }
 
-        // Global Visual Ambient: Float Floating Hearts Background Architecture
+        // Global Visual Ambient: Floating Background Architecture
         function createAmbientParticles() {
             const container = document.getElementById('particle-container');
-            const shapes = ['fa-heart', 'fa-star', 'fa-sparkles'];
+            const icons = ['fa-heart', 'fa-star', 'fa-sparkles'];
+            
             setInterval(() => {
                 const el = document.createElement('i');
-                const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
-                el.className = `fa-solid ${random
+                const targetIcon = icons[Math.floor(Math.random() * icons.length)];
+                
+                el.className = `fa-solid ${targetIcon} heart-particle text-pink-500/20 text-sm`;
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.animationDuration = (Math.random() * 3 + 4) + 's'; 
+                el.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                
+                container.appendChild(el);
+                
+                setTimeout(() => {
+                    el.remove();
+                }, 6000);
+            }, 450);
+        }
+
+        // Initialization
+        window.addEventListener('DOMContentLoaded', () => {
+            createAmbientParticles();
+        });
+    </script>
+</body>
+</html>
